@@ -32,13 +32,17 @@ function QuestionCard(props) {
 
   return (
   <Card className={styles['question-card']}>
-    <CardContent>
-    <Typography variant="overline" gutterBottom>
-          QUESTION {currentQuestion.question_number}
-        </Typography>
+    <CardContent className={styles.between}>
+      <Typography variant="overline" gutterBottom>
+        QUESTION {currentQuestion.question_number}
+      </Typography>
+      <Button
+          onClick={deleteQuestionHandler}
+          color={'primary'}
+        >Delete</Button>
     </CardContent>
     <CardContent>
-      <div className={styles.row}>
+      <div className={styles.even}>
         <TextField
           label="Question"
           variant="outlined"
@@ -47,24 +51,19 @@ function QuestionCard(props) {
         <FormControl variant="outlined" className={styles['input-select']}>
           <InputLabel id="questiom-type-select-label">Question type</InputLabel>
           <Select
+            defaultValue = {''}
             labelId="questiom-type-select-label"
             id="question-type-select"
             label="Question type"
             onChange={selectQuestionTypeHandler}
           >
-            <MenuItem><em>Select a question type</em></MenuItem>
+            <MenuItem value={''}><em>Select a question type</em></MenuItem>
             <MenuItem value={'mutliple-choice'}>Multiple choice</MenuItem>
             <MenuItem value={'short-answer'}>Short answer</MenuItem>
             <MenuItem value={'long-answer'}>Long answer</MenuItem>
           </Select>
         </FormControl>
       </div>
-    </CardContent>
-    <CardContent className={styles['position-right']}>
-        <Button
-          onClick={deleteQuestionHandler}
-          color={'primary'}
-        >Delete</Button>
     </CardContent>
   </Card>
   )

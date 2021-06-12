@@ -21,8 +21,7 @@ function App() {
   function addQuestion() {
     let newQuestion = {
       key: questionID,
-      question_number: surveyJSON.questions.length + 1,
-      question: ''
+      question_number: surveyJSON.questions.length + 1
     }
 
     setSurveyJSON((prevState) => ({

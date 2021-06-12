@@ -1,4 +1,4 @@
-import { Paper, CardContent, TextField, Divider, Fab } from '@material-ui/core';
+import { Paper, CardContent, TextField, Divider, Fab, CardHeader } from '@material-ui/core';
 import styles from './SurveyGenerator.module.css';
 
 import QuestionCard from './QuestionCard';
@@ -32,6 +32,8 @@ function SurveyGenerator(props) {
 
   return (
     <Paper variant={'outlined'}>
+      <CardHeader titleTypographyProps={{variant:'h6' }} title={'Survey Builder'} />
+      <Divider />
       <CardContent>
         <TextField
           fullWidth
