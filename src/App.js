@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+import styles from './App.module.css';
+import { Container } from '@material-ui/core';
+
+import SurveyGenerator from './components/SurveyGenerator/SurveyGenerator';
+import JSONOutput from './components/JSONOutput/JSONOutput';
 
 function App() {
+  const [surveyJSON, setSurveyJSON] = useState({
+    title: '',
+    questions: []
+  })
+
+  function updateTitle(title) {
+    setSurveyJSON((prevState) => ({
+      ...prevState, title: title
+    }));
+  }
+
+  function addQuestion() {
+    let newQuestion = {
+      question_number: surveyJSON.questions.length + 1,
+      question: ''
+    }
+
+    console.log(surveyJSON)
+
+    setSurveyJSON((prevState) => ({
+      ...prevState,
+      questions: [
+        ...prevState.questions,
+        newQuestion
+      ]
+    }));
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container disableGutters className={styles.app} maxWidth='sm'>
+      <SurveyGenerator
+        onAddQuestion={addQuestion}
+        onUpdateTitle={updateTitle}
+        questions={surveyJSON.questions}
+      />
+      <JSONOutput
+        json={surveyJSON}
+      />
+    </Container>
   );
 }
 
