@@ -5,6 +5,7 @@ import { Container } from '@material-ui/core';
 import SurveyGenerator from './components/SurveyGenerator/SurveyGenerator';
 import JSONOutput from './components/JSONOutput/JSONOutput';
 
+var questionID = 0;
 function App() {
   const [surveyJSON, setSurveyJSON] = useState({
     title: '',
@@ -19,6 +20,7 @@ function App() {
 
   function addQuestion() {
     let newQuestion = {
+      key: questionID,
       question_number: surveyJSON.questions.length + 1,
       question: ''
     }
@@ -30,6 +32,8 @@ function App() {
         newQuestion
       ]
     }));
+
+    questionID++;
   }
 
   function updateQuestions(questions) {

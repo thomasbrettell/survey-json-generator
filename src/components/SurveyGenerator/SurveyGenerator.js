@@ -43,8 +43,8 @@ function SurveyGenerator(props) {
       <CardContent className={styles.body}>
         {props.questions.map(question => (
           <QuestionCard
+            key={question.key}
             data={question}
-            key={question.question_number}
             onUpdateQuestion={updateQuestions}
             onDeleteQuestion={deleteQuestion}
           />

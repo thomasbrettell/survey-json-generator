@@ -6,7 +6,8 @@ import {
   FormControl, 
   InputLabel,
   MenuItem,
-  Button
+  Button,
+  Typography
 } 
 from '@material-ui/core';
 import styles from './QuestionCard.module.css';
@@ -24,8 +25,18 @@ function QuestionCard(props) {
     props.onDeleteQuestion(currentQuestion.question_number)
   }
 
+  function selectQuestionTypeHandler(event) {
+    currentQuestion.question_type = event.target.value
+    props.onUpdateQuestion(currentQuestion)
+  }
+
   return (
   <Card className={styles['question-card']}>
+    <CardContent>
+    <Typography variant="overline" gutterBottom>
+          QUESTION {currentQuestion.question_number}
+        </Typography>
+    </CardContent>
     <CardContent>
       <div className={styles.row}>
         <TextField
@@ -39,11 +50,12 @@ function QuestionCard(props) {
             labelId="questiom-type-select-label"
             id="question-type-select"
             label="Question type"
+            onChange={selectQuestionTypeHandler}
           >
             <MenuItem><em>Select a question type</em></MenuItem>
-            <MenuItem>Ten</MenuItem>
-            <MenuItem>Twenty</MenuItem>
-            <MenuItem>Thirty</MenuItem>
+            <MenuItem value={'mutliple-choice'}>Multiple choice</MenuItem>
+            <MenuItem value={'short-answer'}>Short answer</MenuItem>
+            <MenuItem value={'long-answer'}>Long answer</MenuItem>
           </Select>
         </FormControl>
       </div>
