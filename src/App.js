@@ -23,8 +23,6 @@ function App() {
       question: ''
     }
 
-    console.log(surveyJSON)
-
     setSurveyJSON((prevState) => ({
       ...prevState,
       questions: [
@@ -32,13 +30,21 @@ function App() {
         newQuestion
       ]
     }));
-}
+  }
+
+  function updateQuestions(questions) {
+    setSurveyJSON((prevState) => ({
+      ...prevState,
+      questions: questions
+    }));
+  }
 
   return (
     <Container disableGutters className={styles.app} maxWidth='sm'>
       <SurveyGenerator
         onAddQuestion={addQuestion}
         onUpdateTitle={updateTitle}
+        onUpdateQuestions={updateQuestions}
         questions={surveyJSON.questions}
       />
       <JSONOutput

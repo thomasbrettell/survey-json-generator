@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import { Paper, CardContent, TextField, Divider, Fab } from '@material-ui/core';
 import styles from './SurveyGenerator.module.css';
 
@@ -11,6 +10,14 @@ function SurveyGenerator(props) {
 
   function onClickHandler() {
     props.onAddQuestion()
+  }
+
+  function updateQuestions(updatedObject) {
+    const questionsUpdated = [...props.questions];
+    const targetIndex = props.questions.findIndex(question=>question.question_number===updatedObject.question_number)
+    questionsUpdated[targetIndex] = updatedObject
+    console.log(questionsUpdated)
+    props.onUpdateQuestions(questionsUpdated)
   }
 
   return (
@@ -26,7 +33,9 @@ function SurveyGenerator(props) {
       <CardContent className={styles.body}>
         {props.questions.map(question => (
           <QuestionCard
+            data={question}
             key={question.question_number}
+            onUpdateQuestion={updateQuestions}
           />
         ))}
         <Fab

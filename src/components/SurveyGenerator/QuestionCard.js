@@ -12,14 +12,27 @@ from '@material-ui/core';
 import styles from './QuestionCard.module.css';
 
 function QuestionCard(props) {
+  const [updatedObject, setUpdatedObject] = useState(props.data)
+
+  console.log(updatedObject)
+
+  function titleUpdateHandler(event) {
+    setUpdatedObject((prevState) => ({
+      ...prevState, question: event.target.value
+    }))
+
+    props.onUpdateQuestion(updatedObject)
+  }
 
   return (
   <Card className={styles['question-card']}>
     <CardContent>
       <div className={styles.row}>
         <TextField
+          value={updatedObject.question}
           label="Question"
           variant="outlined"
+          onChange={titleUpdateHandler}
         />
 
         {/* <FormControl variant="outlined" className={styles['input-select']}>
