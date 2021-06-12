@@ -16,7 +16,6 @@ function SurveyGenerator(props) {
     const questionsUpdated = [...props.questions];
     const targetIndex = props.questions.findIndex(question=>question.question_number===updatedObject.question_number)
     questionsUpdated[targetIndex] = updatedObject
-    console.log(questionsUpdated)
     props.onUpdateQuestions(questionsUpdated)
   }
 

@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import { 
   Card, 
   CardContent, 
@@ -11,17 +10,11 @@ import {
 from '@material-ui/core';
 import styles from './QuestionCard.module.css';
 
-function QuestionCard(props) {
-  const [updatedObject, setUpdatedObject] = useState(props.data)
-
-  console.log(updatedObject)
-
+function QuestionCard(props) {  
+  let currentQuestion = props.data
   function titleUpdateHandler(event) {
-    setUpdatedObject((prevState) => ({
-      ...prevState, question: event.target.value
-    }))
-
-    props.onUpdateQuestion(updatedObject)
+    currentQuestion.question = event.target.value
+    props.onUpdateQuestion(currentQuestion)
   }
 
   return (
@@ -29,7 +22,6 @@ function QuestionCard(props) {
     <CardContent>
       <div className={styles.row}>
         <TextField
-          value={updatedObject.question}
           label="Question"
           variant="outlined"
           onChange={titleUpdateHandler}
