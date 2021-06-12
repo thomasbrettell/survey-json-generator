@@ -5,16 +5,23 @@ import {
   Select, 
   FormControl, 
   InputLabel,
-  MenuItem 
+  MenuItem,
+  Button
 } 
 from '@material-ui/core';
 import styles from './QuestionCard.module.css';
 
 function QuestionCard(props) {  
+
   let currentQuestion = props.data
+
   function titleUpdateHandler(event) {
     currentQuestion.question = event.target.value
     props.onUpdateQuestion(currentQuestion)
+  }
+
+  function deleteQuestionHandler() {
+    props.onDeleteQuestion(currentQuestion.question_number)
   }
 
   return (
@@ -26,22 +33,26 @@ function QuestionCard(props) {
           variant="outlined"
           onChange={titleUpdateHandler}
         />
-
-        {/* <FormControl variant="outlined" className={styles['input-select']}>
+        <FormControl variant="outlined" className={styles['input-select']}>
           <InputLabel id="questiom-type-select-label">Question type</InputLabel>
           <Select
             labelId="questiom-type-select-label"
             id="question-type-select"
             label="Question type"
           >
-            <MenuItem value=""><em>Select a question type</em></MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem><em>Select a question type</em></MenuItem>
+            <MenuItem>Ten</MenuItem>
+            <MenuItem>Twenty</MenuItem>
+            <MenuItem>Thirty</MenuItem>
           </Select>
-        </FormControl> */}
-
+        </FormControl>
       </div>
+    </CardContent>
+    <CardContent className={styles['position-right']}>
+        <Button
+          onClick={deleteQuestionHandler}
+          color={'primary'}
+        >Delete</Button>
     </CardContent>
   </Card>
   )

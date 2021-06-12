@@ -19,6 +19,17 @@ function SurveyGenerator(props) {
     props.onUpdateQuestions(questionsUpdated)
   }
 
+  function deleteQuestion(questionNumber) {
+    let questionsUpdated = [...props.questions];
+    questionsUpdated = questionsUpdated.filter(question=>question.question_number!==questionNumber)
+    
+    for(var i = 0; i !== questionsUpdated.length; i++) {
+      questionsUpdated[i].question_number = i+1
+    }
+
+    props.onUpdateQuestions(questionsUpdated)
+  }
+
   return (
     <Paper variant={'outlined'}>
       <CardContent>
@@ -35,6 +46,7 @@ function SurveyGenerator(props) {
             data={question}
             key={question.question_number}
             onUpdateQuestion={updateQuestions}
+            onDeleteQuestion={deleteQuestion}
           />
         ))}
         <Fab
