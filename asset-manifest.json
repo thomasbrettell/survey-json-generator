@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/survey-json-generator/static/css/main.981fcdfc.chunk.css",
+    "main.js": "/survey-json-generator/static/js/main.0b31c0de.chunk.js",
+    "main.js.map": "/survey-json-generator/static/js/main.0b31c0de.chunk.js.map",
+    "runtime-main.js": "/survey-json-generator/static/js/runtime-main.0fedcfc8.js",
+    "runtime-main.js.map": "/survey-json-generator/static/js/runtime-main.0fedcfc8.js.map",
+    "static/js/2.17a2c351.chunk.js": "/survey-json-generator/static/js/2.17a2c351.chunk.js",
+    "static/js/2.17a2c351.chunk.js.map": "/survey-json-generator/static/js/2.17a2c351.chunk.js.map",
+    "static/js/3.477c3ab6.chunk.js": "/survey-json-generator/static/js/3.477c3ab6.chunk.js",
+    "static/js/3.477c3ab6.chunk.js.map": "/survey-json-generator/static/js/3.477c3ab6.chunk.js.map",
+    "index.html": "/survey-json-generator/index.html",
+    "static/css/main.981fcdfc.chunk.css.map": "/survey-json-generator/static/css/main.981fcdfc.chunk.css.map",
+    "static/js/2.17a2c351.chunk.js.LICENSE.txt": "/survey-json-generator/static/js/2.17a2c351.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0fedcfc8.js",
+    "static/js/2.17a2c351.chunk.js",
+    "static/css/main.981fcdfc.chunk.css",
+    "static/js/main.0b31c0de.chunk.js"
+  ]
+}
