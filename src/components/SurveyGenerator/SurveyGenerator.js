@@ -22,22 +22,21 @@ function SurveyGenerator(props) {
   function deleteQuestion(questionNumber) {
     let questionsUpdated = [...props.questions];
     questionsUpdated = questionsUpdated.filter(question=>question.question_number!==questionNumber)
-    
     for(var i = 0; i !== questionsUpdated.length; i++) {
       questionsUpdated[i].question_number = i+1
     }
-
     props.onUpdateQuestions(questionsUpdated)
   }
 
   return (
     <Paper variant={'outlined'}>
-      <CardHeader titleTypographyProps={{variant:'h6' }} title={'Survey Builder'} />
+      <CardHeader titleTypographyProps={{variant:'h6' }} title={'Survey Generator'} />
       <Divider />
       <CardContent>
         <TextField
           fullWidth
           label={'Survey title'}
+          multiline
           onChange={onUpdateTitle}
         />
       </CardContent>

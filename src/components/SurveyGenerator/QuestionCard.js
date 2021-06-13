@@ -1,3 +1,4 @@
+import React from 'react';
 import { 
   Card, 
   CardContent, 
@@ -7,16 +8,23 @@ import {
   InputLabel,
   MenuItem,
   Button,
-  Typography
+  Typography,
+  List,
+  ListItem,
+  IconButton,
+  InputBase,
+  Divider
 } 
 from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
 import styles from './QuestionCard.module.css';
 
+var optionID = 0;
 function QuestionCard(props) {  
 
   let currentQuestion = props.data
 
-  function titleUpdateHandler(event) {
+  function questionUpdateHandler(event) {
     currentQuestion.question = event.target.value
     props.onUpdateQuestion(currentQuestion)
   }
@@ -26,12 +34,74 @@ function QuestionCard(props) {
   }
 
   function selectQuestionTypeHandler(event) {
-    currentQuestion.question_type = event.target.value
-    props.onUpdateQuestion(currentQuestion)
+    currentQuestion.question_type = event.target.value;
+    if(currentQuestion.question_type === 'mutliple-choice') {
+      currentQuestion.options = [];
+    } else {
+      delete currentQuestion.options;
+    }
+    props.onUpdateQuestion(currentQuestion);
+  }
+
+  function addOptionHandler() {
+    currentQuestion.options.push(
+      {
+        key: optionID,
+        option_number: currentQuestion.options.length+1,
+        option: 'test'
+      })
+    props.onUpdateQuestion(currentQuestion);
+    optionID++;
+  }
+
+  function deleteOptionHandler(optionNumber) {
+    currentQuestion.options = currentQuestion.options.filter(option=>option.option_number!==optionNumber)
+    for(var i = 0; i !== currentQuestion.options.length; i++) {
+      currentQuestion.options[i].option_number = i+1;
+    }
+    props.onUpdateQuestion(currentQuestion);
+  }
+
+  if(currentQuestion.options) {
+    var optionsContent = (
+      <CardContent>
+        <List dense className={styles.options} disablePadding>
+          <div className={styles.end}>
+            <Button
+              className={styles['add-option-btn']}
+              color={'primary'}
+              size={'small'}
+              onClick={addOptionHandler}
+            >ADD OPTION</Button>
+          </div>
+        {currentQuestion.options.map(option => (
+          <React.Fragment
+            key={option.key}
+          >
+          <ListItem>
+            <InputBase
+              placeholder={`OPTION ${option.option_number}`}
+              defaultValue=""
+              size="small"
+              fullWidth 
+            />
+            <IconButton
+              size={'small'}
+              onClick={() => deleteOptionHandler(option.option_number)}
+            >
+              <ClearIcon />
+            </IconButton>
+          </ListItem>
+          <Divider />
+          </React.Fragment>
+        ))}
+        </List>
+      </CardContent>
+    )
   }
 
   return (
-  <Card className={styles['question-card']}>
+  <Card className={styles['question-card']} elevation={0}>
     <CardContent className={styles.between}>
       <Typography variant="overline" gutterBottom>
         QUESTION {currentQuestion.question_number}
@@ -46,7 +116,8 @@ function QuestionCard(props) {
         <TextField
           label="Question"
           variant="outlined"
-          onChange={titleUpdateHandler}
+          multiline
+          onChange={questionUpdateHandler}
         />
         <FormControl variant="outlined" className={styles['input-select']}>
           <InputLabel id="questiom-type-select-label">Question type</InputLabel>
@@ -65,6 +136,7 @@ function QuestionCard(props) {
         </FormControl>
       </div>
     </CardContent>
+    {optionsContent}
   </Card>
   )
 }

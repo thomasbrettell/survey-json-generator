@@ -18,7 +18,7 @@ function JSONOutput(props) {
         </IconButton>
       </CopyToClipboard>
       <Divider />
-      <div className={styles['json-display']} value={JSON.stringify(props.json)}>
+      <div className={styles['json-display']}>
         {JSON.stringify(props.json)}
       </div>
     </Paper>
