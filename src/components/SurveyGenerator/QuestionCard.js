@@ -48,7 +48,7 @@ function QuestionCard(props) {
       {
         key: optionID,
         option_number: currentQuestion.options.length+1,
-        option: 'test'
+        option: ''
       })
     props.onUpdateQuestion(currentQuestion);
     optionID++;
@@ -59,6 +59,11 @@ function QuestionCard(props) {
     for(var i = 0; i !== currentQuestion.options.length; i++) {
       currentQuestion.options[i].option_number = i+1;
     }
+    props.onUpdateQuestion(currentQuestion);
+  }
+
+  function onUpdateOption(event, optionNumber) {
+    currentQuestion.options[optionNumber-1].option = event.target.value
     props.onUpdateQuestion(currentQuestion);
   }
 
@@ -79,11 +84,13 @@ function QuestionCard(props) {
             key={option.key}
           >
           <ListItem>
+            <div className={styles['option-number']}><sup>O{option.option_number}</sup></div>
             <InputBase
-              placeholder={`OPTION ${option.option_number}`}
+              placeholder={'Enter option'}
               defaultValue=""
               size="small"
               fullWidth 
+              onChange={(event) => onUpdateOption(event, option.option_number)}
             />
             <IconButton
               size={'small'}
