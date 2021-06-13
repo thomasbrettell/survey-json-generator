@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import styles from './App.module.css';
 import { Container } from '@material-ui/core';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LanguageIcon from '@material-ui/icons/Language';
 
 import SurveyGenerator from './components/SurveyGenerator/SurveyGenerator';
 import JSONOutput from './components/JSONOutput/JSONOutput';
@@ -45,6 +47,8 @@ function App() {
 
   return (
     <Container disableGutters className={styles.app} maxWidth='sm'>
+      <a href='https://github.com/thomasbrettell/survey-json-generator' target='_blank' rel="noreferrer"><GitHubIcon className={styles.icon}/></a>
+      <a href='https://thomasbrettell.com/' target='_blank' rel="noreferrer"><LanguageIcon className={styles.icon}/></a>
       <SurveyGenerator
         onAddQuestion={addQuestion}
         onUpdateTitle={updateTitle}
