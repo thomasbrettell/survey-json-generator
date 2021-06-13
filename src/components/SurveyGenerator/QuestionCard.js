@@ -91,6 +91,7 @@ function QuestionCard(props) {
               size="small"
               fullWidth 
               onChange={(event) => onUpdateOption(event, option.option_number)}
+              multiline
             />
             <IconButton
               size={'small'}
